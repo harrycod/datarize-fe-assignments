@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { usePurchaseCustomersData } from '../hooks/usePurchaseCustomersData'
+import Table from '../ui/table/Table'
+import formatNumber from '../utils/formatNumber'
 
 const PurchaseCustomersTable = () => {
   const [searchTerm, setSearchTerm] = useState<string>('')
@@ -37,30 +39,26 @@ const PurchaseCustomersTable = () => {
         </select>
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Total Purchases</th>
-            <th>Total Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          {isLoading && <p>Loading...</p>}
-
-          {isError && <p>{`검색 결과가 없습니다(${error.message})`}</p>}
-
+      <Table>
+        <Table.Header>
+          <Table.Cell header>ID</Table.Cell>
+          <Table.Cell header>이름</Table.Cell>
+          <Table.Cell header>총 구매 횟수</Table.Cell>
+          <Table.Cell header>총 구매 액수</Table.Cell>
+        </Table.Header>
+        {isLoading && <p>Loading...</p>}
+        {isError && <p>{`검색 결과가 없습니다(${error.message})`}</p>}
+        <Table.Body>
           {customers?.map((customer) => (
-            <tr key={customer.id}>
-              <td>{customer.id}</td>
-              <td>{customer.name}</td>
-              <td>{customer.count}</td>
-              <td>{customer.totalAmount}원</td>
-            </tr>
+            <Table.Row key={customer.id}>
+              <Table.Cell>{customer.id}</Table.Cell>
+              <Table.Cell>{customer.name}</Table.Cell>
+              <Table.Cell>{formatNumber(customer.totalAmount)}회</Table.Cell>
+              <Table.Cell>{formatNumber(customer.totalAmount)}원</Table.Cell>
+            </Table.Row>
           ))}
-        </tbody>
-      </table>
+        </Table.Body>
+      </Table>
     </div>
   )
 }
