@@ -17,12 +17,12 @@ export const TableCell: React.FC<CellProps> = ({ header = false, children }) => 
 const StyledThead = styled.th`
   border: 1px solid #ddd;
   padding: 8px;
-  font-size: 14px;
+  font-size: 1.4rem;
 `
 
 const StyledTData = styled.td`
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
-  font-size: 12px;
+  font-size: 1.2rem;
 `
