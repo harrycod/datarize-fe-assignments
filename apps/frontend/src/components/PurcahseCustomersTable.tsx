@@ -20,25 +20,27 @@ const PurchaseCustomersTable = ({ search, sortBy, onSelectCustomer }: Props) => 
       {isLoading && <p>Loading...</p>}
       {isError && <p>{`검색 결과가 없습니다(${error.message})`}</p>}
 
-      <Table>
-        <Table.Header>
-          <Table.Cell header>ID</Table.Cell>
-          <Table.Cell header>이름</Table.Cell>
-          <Table.Cell header>총 구매 횟수</Table.Cell>
-          <Table.Cell header>총 구매 액수</Table.Cell>
-        </Table.Header>
+      {customers && (
+        <Table>
+          <Table.Header>
+            <Table.Cell header>ID</Table.Cell>
+            <Table.Cell header>이름</Table.Cell>
+            <Table.Cell header>총 구매 횟수</Table.Cell>
+            <Table.Cell header>총 구매 액수</Table.Cell>
+          </Table.Header>
 
-        <Table.Body>
-          {customers?.map((customer) => (
-            <Table.Row key={customer.id} onClick={() => handleSelectCustomer(customer.id)}>
-              <Table.Cell>{customer.id}</Table.Cell>
-              <Table.Cell>{customer.name}</Table.Cell>
-              <Table.Cell>{formatNumber(customer.count)}회</Table.Cell>
-              <Table.Cell>{formatNumber(customer.totalAmount)}원</Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
+          <Table.Body>
+            {customers.map((customer) => (
+              <Table.Row key={customer.id} onClick={() => handleSelectCustomer(customer.id)}>
+                <Table.Cell>{customer.id}</Table.Cell>
+                <Table.Cell>{customer.name}</Table.Cell>
+                <Table.Cell>{formatNumber(customer.count)}회</Table.Cell>
+                <Table.Cell>{formatNumber(customer.totalAmount)}원</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      )}
     </>
   )
 }

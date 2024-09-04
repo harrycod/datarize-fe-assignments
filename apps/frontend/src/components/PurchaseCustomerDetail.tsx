@@ -30,28 +30,30 @@ const PurchaseCustomerDetail = ({ selectedCustomerId }: Props) => {
       {isLoading && <p>Loading...</p>}
       {isError && <p>{`검색 결과가 없습니다(${error.message})`}</p>}
 
-      <Table>
-        <Table.Header>
-          <Table.Cell header>날짜</Table.Cell>
-          <Table.Cell header>상품</Table.Cell>
-          <Table.Cell header>제품 명</Table.Cell>
-          <Table.Cell header>구매 가격</Table.Cell>
-          <Table.Cell header>구매 갯수</Table.Cell>
-        </Table.Header>
-        <Table.Body>
-          {purchases?.map((purchase, index) => (
-            <Table.Row key={index}>
-              <Table.Cell>{purchase.date}</Table.Cell>
-              <Table.Cell>
-                {purchase.imgSrc && <ProductThumbnail src={purchase.imgSrc} alt={purchase.product} />}
-              </Table.Cell>
-              <Table.Cell>{purchase.product}</Table.Cell>
-              <Table.Cell>{formatNumber(purchase.price)}원</Table.Cell>
-              <Table.Cell>{formatNumber(purchase.quantity)}개</Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
+      {purchases && (
+        <Table>
+          <Table.Header>
+            <Table.Cell header>날짜</Table.Cell>
+            <Table.Cell header>상품</Table.Cell>
+            <Table.Cell header>제품 명</Table.Cell>
+            <Table.Cell header>구매 가격</Table.Cell>
+            <Table.Cell header>구매 갯수</Table.Cell>
+          </Table.Header>
+          <Table.Body>
+            {purchases?.map((purchase, index) => (
+              <Table.Row key={index}>
+                <Table.Cell>{purchase.date}</Table.Cell>
+                <Table.Cell>
+                  {purchase.imgSrc && <ProductThumbnail src={purchase.imgSrc} alt={purchase.product} />}
+                </Table.Cell>
+                <Table.Cell>{purchase.product}</Table.Cell>
+                <Table.Cell>{formatNumber(purchase.price)}원</Table.Cell>
+                <Table.Cell>{formatNumber(purchase.quantity)}개</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      )}
     </>
   )
 }
