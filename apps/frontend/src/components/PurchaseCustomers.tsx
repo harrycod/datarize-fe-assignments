@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import styled from '@emotion/styled'
 
 import PurchaseCustomersFilter from './PurchaseCustomersFilter'
 import PurcahseCustomersTable from './PurcahseCustomersTable'
@@ -12,7 +13,7 @@ const PurchaseCustomersTable = () => {
 
   return (
     <div>
-      <h3>구매 고객 목록</h3>
+      <PurchaseCustomerTitle>구매 고객 목록</PurchaseCustomerTitle>
       <PurchaseCustomersFilter sortBy={sortBy} onSearchChange={setSearch} onSortChange={setSortBy} />
       <PurcahseCustomersTable search={search} sortBy={sortBy} onSelectCustomer={setSelectedCustomerId} />
 
@@ -24,5 +25,10 @@ const PurchaseCustomersTable = () => {
     </div>
   )
 }
+
+const PurchaseCustomerTitle = styled.h3`
+  font-size: 2.4rem;
+  margin: 20px 0;
+`
 
 export default PurchaseCustomersTable
