@@ -1,9 +1,9 @@
-import PurchaseFrequencyChart from '../components/PurchaseFrequencyChart'
+import PurchaseFrequency from '../components/PurchaseFrequency'
 import PurchaseCustomers from '../components/PurchaseCustomers'
 const Dashboard = () => {
   return (
     <>
-      <PurchaseFrequencyChart />
+      <PurchaseFrequency />
       <PurchaseCustomers />
     </>
   )
