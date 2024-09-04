@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import styled from '@emotion/styled'
 
 export interface RowProps {
   onClick?: () => void
@@ -6,5 +7,9 @@ export interface RowProps {
 }
 
 export const TableRow: React.FC<RowProps> = ({ onClick, children }) => {
-  return <tr onClick={onClick}>{children}</tr>
+  const StyledTRow = styled.tr`
+    cursor: ${onClick && 'pointer'};
+  `
+
+  return <StyledTRow onClick={onClick}>{children}</StyledTRow>
 }
