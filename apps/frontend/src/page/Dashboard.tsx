@@ -1,10 +1,10 @@
 import PurchaseFrequencyChart from '../components/PurchaseFrequencyChart'
-import PurchaseCustomersTable from '../components/PurchaseCustomersTable'
+import PurchaseCustomers from '../components/PurchaseCustomers'
 const Dashboard = () => {
   return (
     <>
       <PurchaseFrequencyChart />
-      <PurchaseCustomersTable />
+      <PurchaseCustomers />
     </>
   )
 }
