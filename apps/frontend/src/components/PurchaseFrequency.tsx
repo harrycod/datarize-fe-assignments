@@ -3,6 +3,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 import { usePurchaseFrequencyData } from '../hooks/usePurchaseFrequencyData'
 import styled from '@emotion/styled'
 
+import PurchaseFrequencyFilter from './PurchaseFrequencyFilter'
 const legendFormatter = (key: string) => {
   return key === 'count' ? '구매횟수' : key
 }
@@ -25,25 +26,14 @@ const PurchaseFrequencyChart = () => {
   return (
     <div>
       <PurchaseFrequencyTitle>가격대별 구매 빈도</PurchaseFrequencyTitle>
-      <div style={{ marginBottom: '20px' }}>
-        <input
-          type="date"
-          value={fromDate}
-          min={defaultFromDate}
-          max={toDate}
-          onChange={(e) => e.target.value && setFromDate(e.target.value)}
-          placeholder="시작 날짜 선택"
-        />
-        <div>~</div>
-        <input
-          type="date"
-          value={toDate}
-          min={fromDate}
-          max={defaultToDate}
-          onChange={(e) => e.target.value && setToDate(e.target.value)}
-          placeholder="종료 날짜 선택"
-        />
-      </div>
+      <PurchaseFrequencyFilter
+        defaultFromDate={defaultFromDate}
+        defaultToDate={defaultToDate}
+        fromDate={fromDate}
+        toDate={toDate}
+        onChangeFromDate={setFromDate}
+        onChangeToDate={setToDate}
+      />
 
       {isLoading && <p>Loading data...</p>}
       {isError && <p>Error loading data: {error.message}</p>}
