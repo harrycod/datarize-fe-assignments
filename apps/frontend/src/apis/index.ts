@@ -56,3 +56,18 @@ export const fetchPurchaseCustomers = async ({ search, sortBy }: { search?: stri
 
   return response
 }
+
+export interface PurchaseCustomerDetail {
+  date: string
+  quantity: number
+  product: string
+  price: number
+  imgSrc: string
+}
+
+// 고객 세부 데이터
+export const fetchPurchaseCustomerDetails = async ({ customerId }: { customerId: number }) => {
+  const response = await fetchData<PurchaseCustomerDetail[]>(`/api/customers/${customerId}/purchases/`)
+
+  return response
+}
