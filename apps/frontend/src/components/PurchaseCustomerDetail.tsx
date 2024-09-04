@@ -36,7 +36,7 @@ const PurchaseCustomerDetail = ({ selectedCustomerId }: Props) => {
           <Table.Header>
             <Table.Cell header>날짜</Table.Cell>
             <Table.Cell header>상품</Table.Cell>
-            <Table.Cell header>제품 명</Table.Cell>
+            <Table.Cell header>제품 종류</Table.Cell>
             <Table.Cell header>구매 가격</Table.Cell>
             <Table.Cell header>구매 갯수</Table.Cell>
           </Table.Header>
