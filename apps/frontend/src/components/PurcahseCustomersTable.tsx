@@ -1,5 +1,8 @@
+import styled from '@emotion/styled'
+
 import { usePurchaseCustomersData } from '../hooks/usePurchaseCustomersData'
 import Table from '../ui/table/Table'
+import LoadingSpinner from '../ui/loading/LoadingSpinner'
 import formatNumber from '../utils/formatNumber'
 
 interface Props {
@@ -17,8 +20,8 @@ const PurchaseCustomersTable = ({ search, sortBy, onSelectCustomer }: Props) => 
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>{`검색 결과가 없습니다(${error.message})`}</p>}
+      {isLoading && <LoadingSpinner />}
+      {isError && <ErrorContent>{`검색 결과가 없습니다(${error.message})`}</ErrorContent>}
 
       {customers && (
         <Table>
@@ -44,5 +47,14 @@ const PurchaseCustomersTable = ({ search, sortBy, onSelectCustomer }: Props) => 
     </>
   )
 }
+
+const ErrorContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 400px;
+  font-size: 1.4rem;
+`
 
 export default PurchaseCustomersTable
