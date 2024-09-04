@@ -1,5 +1,6 @@
 import type { ChangeEvent } from 'react'
 import { useEffect, useState } from 'react'
+import styled from '@emotion/styled'
 
 import Select from '../ui/select/Select'
 
@@ -32,15 +33,25 @@ const PurchaseCustomersFilter = ({ sortBy, onSearchChange, onSortChange }: Props
   }, [searchTerm, onSearchChange])
 
   return (
-    <div>
+    <FilterContainer>
       <input type="text" placeholder="고객 이름 검색" value={searchTerm} onChange={handleSearchChange} />
       <Select value={sortBy} onChange={handleSortChange}>
         <Select.Option value="id">기본 정렬(ID)</Select.Option>
         <Select.Option value="desc">구매가격 높은 순</Select.Option>
         <Select.Option value="asc">구매가격 낮은 순</Select.Option>
       </Select>
-    </div>
+    </FilterContainer>
   )
 }
+
+const FilterContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 20px;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+`
 
 export default PurchaseCustomersFilter
