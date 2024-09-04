@@ -24,6 +24,7 @@ export interface PurchaseFrequency {
   count: number
 }
 
+// 가격대별 구매빈도 데이터
 export const fetchPurchaseFrequency = async ({ from, to }: { from?: string; to?: string }) => {
   const params = new URLSearchParams()
 
@@ -33,6 +34,25 @@ export const fetchPurchaseFrequency = async ({ from, to }: { from?: string; to?:
   }
 
   const response = await fetchData<PurchaseFrequency[]>(`/api/purchase-frequency?${params.toString()}`)
+
+  return response
+}
+
+export interface PurchaseCustomer {
+  count: number
+  totalAmount: number
+  id: number
+  name: string
+}
+
+// 고객 목록 데이터
+export const fetchPurchaseCustomers = async ({ search, sortBy }: { search?: string; sortBy?: string }) => {
+  const params = new URLSearchParams()
+
+  if (search) params.append('name', search)
+  if (sortBy) params.append('sortBy', sortBy)
+
+  const response = await fetchData<PurchaseCustomer[]>(`/api/customers?${params.toString()}`)
 
   return response
 }
