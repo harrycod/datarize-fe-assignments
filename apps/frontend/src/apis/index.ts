@@ -18,3 +18,21 @@ const fetchData = async <T>(endpoint: string, options: RequestInit = {}): Promis
   }
   return await response.json()
 }
+
+export interface PurchaseFrequency {
+  range: string
+  count: number
+}
+
+export const fetchPurchaseFrequency = async ({ from, to }: { from?: string; to?: string }) => {
+  const params = new URLSearchParams()
+
+  if (from && to) {
+    params.append('from', from)
+    params.append('to', to)
+  }
+
+  const response = await fetchData<PurchaseFrequency[]>(`/api/purchase-frequency?${params.toString()}`)
+
+  return response
+}
